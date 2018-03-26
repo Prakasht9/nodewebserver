@@ -1,7 +1,12 @@
 const express=require('express');
 const hbs=require('hbs');
 const fs=require('fs');
+const port =process.env.PORT||3000;
+
+
 var app=express();
+
+
 
 hbs.registerPartials(__dirname+'/views/partials');
 
@@ -14,7 +19,7 @@ var now=new Date().toString();
 var log=`${now} :${req.method} ${req.url}`;
 console.log(log);
 
-fs.appendFile('Server.log',log +'\\n',(err)=>{
+fs.appendFile('Server.log',log +'\n',(err)=>{
 	if(err){
 		console.log('Unable to append to Server .log');
 	}
@@ -57,6 +62,6 @@ res.send({
 
 
 
-app.listen(3000,()=>{
-	console.log('Server is up on port 3000');
+app.listen(port,()=>{
+	console.log(`Server is up on port ${port}`);
 });
